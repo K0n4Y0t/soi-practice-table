@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #100c09;
+  --color-surface: #1c1612;
+  --color-surface-2: #2a211b;
+  --color-fg: #f3e6d0;
+  --color-muted: #a89478;
+  --color-primary: #e23b2f;
+  --color-gold: #e6b15a;
+  --color-line: #3a2e24;
+  --font-display: "Chakra Petch", "Sarabun", sans-serif;
+  --font-sans: "Sarabun", sans-serif;
+  --radius-card: 0.75rem;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    line-height: 1.45;
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+}
+
+@keyframes seal-pop {
+  from {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+}
+
+.seal-pop {
+  animation: seal-pop 180ms ease-out;
+}
+
+.hit-shake {
+  animation: shake 220ms ease-in-out;
+}
+
+.pad-safe {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seal-pop,
+  .hit-shake {
+    animation: none;
+  }
+}
