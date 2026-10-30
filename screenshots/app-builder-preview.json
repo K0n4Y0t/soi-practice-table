@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "โต๊ะซ้อมศึก",
+      "hasCanvas": false,
+      "bodyTextLen": 673,
+      "bodyTextHash": "4ee9cf2a3fdaf8b9b38b91df67354d9f625e63a0a67ddd24706b5dcb82f80dd9",
+      "bodyTextPrefix": "RULE BOOK 3.0 · โต๊ะซ้อม โต๊ะซ้อมศึก ซ้อมกติกาการ์ดแบบศึกซอยบนจอ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "โต๊ะซ้อมศึก",
+      "hasCanvas": false,
+      "bodyTextLen": 673,
+      "bodyTextHash": "4ee9cf2a3fdaf8b9b38b91df67354d9f625e63a0a67ddd24706b5dcb82f80dd9",
+      "bodyTextPrefix": "RULE BOOK 3.0 · โต๊ะซ้อม โต๊ะซ้อมศึก ซ้อมกติกาการ์ดแบบศึกซอยบนจอ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}
