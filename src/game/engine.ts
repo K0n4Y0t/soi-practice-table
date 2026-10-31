@@ -527,7 +527,7 @@ export function cheapestPay(s: GameState, uid: string): string[] | null {
       sum += defOf(s, pool[i]).gem;
       sac += sacrifice(s, pool[i]);
     }
-    if (sum < cost) continue;
+    if (!gemPaymentOk(cost, picks.map((id) => defOf(s, id).gem))) continue;
     const waste = sum - cost;
     if (sac < bestSac || (sac === bestSac && waste < bestWaste)) {
       best = picks;

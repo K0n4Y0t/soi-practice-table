@@ -1,8 +1,9 @@
-import { validateDeck } from "./catalog";
+import { DEFS, validateDeck } from "./catalog";
 import {
   actPass,
   actShield,
   actUnity,
+  cheapestPay,
   confirmMulligan,
   commitSpell,
   commitSummon,
@@ -250,5 +251,27 @@ export function runSelfTest(): string[] {
   bad("สามัคคีบวกพลัง", helped.cards[helper].rested && inspect(helped, striker).total === 3);
   const settled = actPass(helped);
   bad("สามัคคีชนะการต่อสู้", settled.players.you.avatars.includes(striker) && !settled.players.opp.avatars.includes(blocker));
+
+  const zeroCrit = ready();
+  quiet(zeroCrit);
+  zeroCrit.players.you.avatars = [];
+  zeroCrit.players.opp.avatars = [];
+  const poke = field(zeroCrit, "you", "r-kid");
+  zeroCrit.cards[poke].buffs = [{ id: "z2", power: -5, label: "ทด" }];
+  for (const uid of zeroCrit.players.opp.life) zeroCrit.cards[uid].faceUp = true;
+  zeroCrit.players.opp.critical = true;
+  zeroCrit.phase = "combat";
+  const noFinish = declareAttack(zeroCrit, poke, { kind: "life" });
+  bad("พลัง 0 ตี LIFE ตอนสาหัส ยังไม่จบเกม", noFinish.winner === null && noFinish.players.opp.critical);
+
+  const payHand = ready();
+  const bossCard = pull(payHand, "you", "r-mae");
+  const gemA = pull(payHand, "you", "r-shout");
+  const gemB = pull(payHand, "you", "r-land");
+  const gemC = pull(payHand, "you", "r-coffee");
+  payHand.players.you.hand = [bossCard, gemA, gemB, gemC];
+  const chosen = cheapestPay(payHand, bossCard);
+  const chosenGems = (chosen ?? []).map((id) => DEFS[payHand.cards[id].defId].gem);
+  bad("ชุดจ่าย GEM ต้องแน่นพอดี 4", chosen !== null && gemPaymentOk(4, chosenGems) && chosenGems.reduce((a, n) => a + n, 0) === 4);
   return errors;
 }
